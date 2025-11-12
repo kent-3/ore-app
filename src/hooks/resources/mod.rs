@@ -1,3 +1,4 @@
+mod use_board;
 // mod use_boost;
 mod use_boost_apy;
 // mod use_boost_proof;
@@ -18,6 +19,7 @@ mod use_token_price;
 mod use_wss;
 mod use_wss_sub;
 
+pub use use_board::*;
 // pub use use_boost::*;
 pub use use_boost_apy::*;
 // pub use use_boost_proof::*;

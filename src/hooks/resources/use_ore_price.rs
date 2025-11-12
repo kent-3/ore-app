@@ -32,16 +32,20 @@ pub fn use_ore_quote(output_token: Pubkey) -> Resource<GatewayResult<f64>> {
     use_resource(move || async move {
         let client = reqwest::Client::new();
         let url = format!("{}?ids={}", PRICE_API_URL, output_token.to_string());
-        let asset_price = client
+        let response = client
             .get(url)
             .send()
             .await?
             .json::<PriceResponse>()
-            .await?
+            .await?;
+        
+        // Handle missing price data gracefully (e.g., for devnet tokens)
+        let asset_price = response
             .0
             .get(&output_token.to_string())
-            .unwrap()
-            .usd_price;
+            .map(|price| price.usd_price)
+            .unwrap_or(0.0); // Default to 0.0 if price not found
+        
         Ok(asset_price)
     })
 }

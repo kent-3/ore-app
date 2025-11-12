@@ -1,3 +1,4 @@
+use ore_api::state::{Board, Miner, Round};
 use ore_boost_api::state::{Boost, Config as BoostConfig, Stake};
 use ore_types::{
     request::{LinkXAccountRequest, TransactionEvent},
@@ -34,6 +35,9 @@ pub trait OreGateway {
     async fn get_boost(&self, address: Pubkey) -> GatewayResult<Boost>;
     async fn get_stake(&self, address: Pubkey) -> GatewayResult<Stake>;
     async fn get_boost_config(&self, address: Pubkey) -> GatewayResult<BoostConfig>;
+    async fn get_board(&self, address: Pubkey) -> GatewayResult<Board>;
+    async fn get_round(&self, address: Pubkey) -> GatewayResult<Round>;
+    async fn get_miner(&self, address: Pubkey) -> GatewayResult<Miner>;
 
     // API
     async fn get_boost_yield_7d(&self, boost_address: Pubkey) -> GatewayResult<f64>;
@@ -86,6 +90,33 @@ impl<R: Rpc> OreGateway for Gateway<R> {
             .await
             .map_err(GatewayError::from)?;
         Ok(*Stake::try_from_bytes(&data)?)
+    }
+
+    async fn get_board(&self, address: Pubkey) -> GatewayResult<Board> {
+        let data = self
+            .rpc
+            .get_account_data(&address)
+            .await
+            .map_err(GatewayError::from)?;
+        Ok(*Board::try_from_bytes(&data)?)
+    }
+
+    async fn get_round(&self, address: Pubkey) -> GatewayResult<Round> {
+        let data = self
+            .rpc
+            .get_account_data(&address)
+            .await
+            .map_err(GatewayError::from)?;
+        Ok(*Round::try_from_bytes(&data)?)
+    }
+
+    async fn get_miner(&self, address: Pubkey) -> GatewayResult<Miner> {
+        let data = self
+            .rpc
+            .get_account_data(&address)
+            .await
+            .map_err(GatewayError::from)?;
+        Ok(*Miner::try_from_bytes(&data)?)
     }
 
     async fn get_boost_yield_7d(&self, boost_address: Pubkey) -> GatewayResult<f64> {

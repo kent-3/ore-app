@@ -4,13 +4,13 @@ use dioxus::prelude::*;
 use base64::prelude::BASE64_STANDARD;
 use ore_api::consts::TOKEN_DECIMALS;
 use ore_boost_api::state::reserve_pda;
-use solana_extra_wasm::program::spl_token::amount_to_ui_amount;
 use solana_sdk::program_pack::Pack;
 
 use crate::gateway::spl::SplGateway;
 use crate::gateway::{AccountNotificationParams, GatewayError, GatewayResult, UiTokenAmount};
 use crate::hooks::{use_gateway, use_wss_subscription};
 use crate::solana::{spl_associated_token_account, spl_token};
+use crate::solana::spl_token::amount_to_ui_amount;
 
 pub(crate) fn use_reserve_balance_wss_provider() {
     let signal = use_reserve_balance_signal();

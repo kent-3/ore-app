@@ -101,7 +101,9 @@ num-format = "0.4.4"
 objc = { version = "0.2", optional = true, features = [] }
 once_cell = "1.18"
 ore-api-v2 = { package = "ore-api", version = "3.6.0" }
-ore-api = { git = "https://github.com/regolith-labs/ore", branch = "hardhat/one", ref = "99b24775742f86fd650c2418c79ff289b94a986f" }
+# Using local ore-api for devnet deployment
+ore-api = { path = "../ore/api" }
+# ore-api = { git = "https://github.com/regolith-labs/ore", branch = "hardhat/one", ref = "99b24775742f86fd650c2418c79ff289b94a986f" }
 ore-boost-api = { git = "https://github.com/regolith-labs/ore-boost", branch = "hardhat/bsm-boost", ref = "a6b7234c1068a989cf8de257186aa53594958dc5" }
 ore-miner-types = { path = "./miner-types" }
 ore-miner-web = { path = "./miner-web", features = [

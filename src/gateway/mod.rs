@@ -28,15 +28,27 @@ pub use utils::SimulateTransactionResponse;
 pub use utils::*;
 pub use wss::*;
 
+// Devnet configuration
 #[cfg(feature = "web")]
-pub const RPC_URL: &str = "https://rpc.ironforge.network/mainnet?apiKey=01J4NJDYJXSGJYE3AN6VXEB5VR";
+pub const RPC_URL: &str = "https://api.devnet.solana.com";
 #[cfg(not(feature = "web"))]
-pub const RPC_URL: &str = "https://rpc.ironforge.network/mainnet?apiKey=01JR0QT6CKAF608VC1DKSE1KC3";
+pub const RPC_URL: &str = "https://api.devnet.solana.com";
 
 #[cfg(feature = "web")]
-pub const WSS_URL: &str = "wss://rpc.ironforge.network/mainnet?apiKey=01J4NJDYJXSGJYE3AN6VXEB5VR";
+pub const WSS_URL: &str = "wss://api.devnet.solana.com";
 #[cfg(not(feature = "web"))]
-pub const WSS_URL: &str = "wss://rpc.ironforge.network/mainnet?apiKey=01JR0QT6CKAF608VC1DKSE1KC3";
+pub const WSS_URL: &str = "wss://api.devnet.solana.com";
+
+// Mainnet configuration (commented out)
+// #[cfg(feature = "web")]
+// pub const RPC_URL: &str = "https://rpc.ironforge.network/mainnet?apiKey=01J4NJDYJXSGJYE3AN6VXEB5VR";
+// #[cfg(not(feature = "web"))]
+// pub const RPC_URL: &str = "https://rpc.ironforge.network/mainnet?apiKey=01JR0QT6CKAF608VC1DKSE1KC3";
+//
+// #[cfg(feature = "web")]
+// pub const WSS_URL: &str = "wss://rpc.ironforge.network/mainnet?apiKey=01J4NJDYJXSGJYE3AN6VXEB5VR";
+// #[cfg(not(feature = "web"))]
+// pub const WSS_URL: &str = "wss://rpc.ironforge.network/mainnet?apiKey=01JR0QT6CKAF608VC1DKSE1KC3";
 
 pub struct Gateway<R: Rpc> {
     pub rpc: R,

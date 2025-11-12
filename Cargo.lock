@@ -838,7 +838,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "115e54d64eb62cdebad391c19efc9dce4981c690c85a33a12199d99bb9546fee"
 dependencies = [
  "borsh-derive 0.10.4",
- "hashbrown 0.12.3",
+ "hashbrown 0.13.2",
 ]
 
 [[package]]
@@ -2625,6 +2625,17 @@ name = "endi"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a3d8a32ae18130a3c84dd492d4215c3d913c3b07c6b63c2eb3eb7ff1101ab7bf"
+
+[[package]]
+name = "entropy-api"
+version = "0.1.4"
+dependencies = [
+ "bytemuck",
+ "num_enum 0.7.3",
+ "solana-program",
+ "steel",
+ "thiserror 1.0.69",
+]
 
 [[package]]
 name = "enum-iterator"
@@ -4609,7 +4620,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "fc2f4eb4bc735547cfed7c0a4922cbd04a4655978c09b54f1f7b228750664c34"
 dependencies = [
  "cfg-if",
- "windows-targets 0.48.5",
+ "windows-targets 0.52.6",
 ]
 
 [[package]]
@@ -5261,7 +5272,7 @@ version = "0.7.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "af1844ef2428cc3e1cb900be36181049ef3d3193c63e43026cfe202983b27a56"
 dependencies = [
- "proc-macro-crate 1.3.1",
+ "proc-macro-crate 3.2.0",
  "proc-macro2",
  "quote",
  "syn 2.0.98",
@@ -5586,17 +5597,18 @@ dependencies = [
 
 [[package]]
 name = "ore-api"
-version = "3.7.0"
-source = "git+https://github.com/regolith-labs/ore?branch=hardhat%2Fone#f4171a0b9cfef70c7860db63fc516849d34ff6fc"
+version = "3.7.5"
 dependencies = [
  "base64 0.22.1",
  "bytemuck",
  "const-crypto",
- "mpl-token-metadata",
+ "entropy-api",
  "num_enum 0.7.3",
+ "serde",
  "solana-program",
  "spl-associated-token-account 6.0.0",
  "spl-token 4.0.2",
+ "spl-token-2022 7.0.0",
  "steel",
  "thiserror 1.0.69",
 ]
@@ -5648,7 +5660,7 @@ dependencies = [
  "objc",
  "once_cell",
  "ore-api 3.6.0",
- "ore-api 3.7.0",
+ "ore-api 3.7.5",
  "ore-boost-api",
  "ore-miner-types",
  "ore-miner-web",
@@ -9557,13 +9569,14 @@ checksum = "a2eb9349b6444b326872e140eb1cf5e7c522154d69e7a0ffb0fb81c06b37543f"
 
 [[package]]
 name = "steel"
-version = "4.0.2"
+version = "4.0.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8aacdf8cc9261c6c801c5cfdf7ddc427d299665899d0612389841ba9920c4065"
+checksum = "c6030c8ef93aca3849404aa73b4fa5fc4d8320fd61684ff15d6a0f5bdd925658"
 dependencies = [
  "bytemuck",
  "fixed",
  "num_enum 0.7.3",
+ "serde",
  "solana-program",
  "spl-associated-token-account 6.0.0",
  "spl-token 4.0.2",
