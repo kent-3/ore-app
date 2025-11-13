@@ -130,7 +130,15 @@ where
                 match get_token_balance(pubkey, mint).await {
                     Ok(initial_data) => data.set(Ok(initial_data)),
                     Err(err) => {
-                        log::error!("Failed to initialize token balance: {:?}", err);
+                        // AccountNotFound is expected for tokens you don't own - only log other errors
+                        match err {
+                            GatewayError::AccountNotFound => {
+                                log::debug!("Token account not found for mint {}: {:?}", mint, err);
+                            }
+                            _ => {
+                                log::error!("Failed to initialize token balance for mint {}: {:?}", mint, err);
+                            }
+                        }
                         data.set(Err(err));
                     }
                 }

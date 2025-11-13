@@ -3,12 +3,24 @@ use ore_pool_types::{
     BalanceUpdate, ContributePayloadV2, Member as MemberRecord, MemberChallenge, RegisterPayload,
     UpdateBalancePayload,
 };
-use solana_sdk::{hash::Hash, pubkey::Pubkey, transaction::Transaction};
+use serde::{Deserialize, Serialize};
+use solana_sdk::{hash::Hash, pubkey::Pubkey, signature::Signature, transaction::Transaction};
 use steel::AccountDeserialize;
 
-use crate::hooks::MiningEvent;
-
 use super::{Gateway, GatewayError, GatewayResult, Rpc};
+
+// v1 Mining event structure (kept for backward compatibility with pool API)
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct MiningEvent {
+    pub signature: Signature,
+    pub timestamp: u64,
+    pub difficulty: u64,
+    pub net_reward: u64,
+    pub net_base_reward: u64,
+    pub net_miner_boost_reward: u64,
+    pub member_difficulty: u64,
+    pub member_reward: u64,
+}
 
 pub trait PoolGateway {
     async fn commit_claim(

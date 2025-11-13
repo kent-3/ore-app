@@ -22,8 +22,10 @@ use tracing::Level;
 use crate::utils::AppNapDisabler;
 use crate::{
     hooks::{
-        use_cache_provider, use_docs_drawer_state_provider, use_miner_cores_provider,
-        use_miner_events_provider, use_miner_provider, use_miner_status_provider, use_mining_loop,
+        use_cache_provider, use_docs_drawer_state_provider,
+        // V1 mining providers - disabled for v3
+        // use_miner_cores_provider, use_miner_events_provider, use_miner_provider,
+        // use_miner_status_provider, use_mining_loop,
         use_transaction_status_provider, use_wallet_drawer_state_provider, use_wallet_provider,
         use_wss_provider,
     },
@@ -34,7 +36,7 @@ const CSS: &str = include_str!("../public/tailwind.css");
 
 fn main() {
     logger::init();
-    dioxus_logger::init(Level::INFO).expect("failed to init logger");
+    dioxus_logger::init(Level::DEBUG).expect("failed to init logger");
     #[cfg(all(feature = "desktop", target_os = "macos"))]
     let _nap_blocker = AppNapDisabler::new();
     dioxus::launch(App)
@@ -43,15 +45,17 @@ fn main() {
 pub fn App() -> Element {
     #[cfg(feature = "web")]
     use_download_url_provider();
-    use_miner_provider();
-    use_miner_status_provider();
-    use_miner_events_provider();
-    use_miner_cores_provider();
+    // V1 mining providers - disabled for v3 (PoW mining removed)
+    // use_miner_provider();
+    // use_miner_status_provider();
+    // use_miner_events_provider();
+    // use_miner_cores_provider();
+    // use_mining_loop();
+    
     use_transaction_status_provider();
     use_wallet_provider();
     use_wss_provider();
     use_cache_provider();
-    use_mining_loop();
     use_wallet_drawer_state_provider();
     use_docs_drawer_state_provider();
 

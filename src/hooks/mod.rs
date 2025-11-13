@@ -1,6 +1,6 @@
 mod drawer_state;
 mod memos;
-mod miner;
+// mod miner; // v1 mining - disabled for v3
 mod resources;
 mod transaction_builders;
 mod transaction_status;
@@ -16,7 +16,7 @@ mod wallet;
 
 pub use drawer_state::*;
 pub use memos::*;
-pub use miner::*;
+// pub use miner::*; // v1 mining - disabled for v3
 pub use resources::*;
 pub use transaction_builders::*;
 pub use transaction_status::*;

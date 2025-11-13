@@ -104,11 +104,13 @@ ore-api-v2 = { package = "ore-api", version = "3.6.0" }
 # Using local ore-api for devnet deployment
 ore-api = { path = "../ore/api" }
 # ore-api = { git = "https://github.com/regolith-labs/ore", branch = "hardhat/one", ref = "99b24775742f86fd650c2418c79ff289b94a986f" }
+# V1 boost/pool - keep for now to avoid breaking legacy code, but won't be used in v3
 ore-boost-api = { git = "https://github.com/regolith-labs/ore-boost", branch = "hardhat/bsm-boost", ref = "a6b7234c1068a989cf8de257186aa53594958dc5" }
 ore-miner-types = { path = "./miner-types" }
 ore-miner-web = { path = "./miner-web", features = [
   "app",
 ], default-features = false, optional = true }
+# V1 pool - keep for now to avoid breaking legacy code
 # ore-pool-api = "1.7.0-beta"
 # ore-pool-types = "1.7.0-beta"
 ore-pool-api = { git = "https://github.com/regolith-labs/ore-pool", branch = "master", ref = "6dd794090bba7cc75f250994210d2162ceca8d9a" }

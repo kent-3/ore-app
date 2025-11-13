@@ -7,6 +7,9 @@ pub enum Route {
     #[route("/")]
     Hello {},
 
+    #[route("/deploy")]
+    Deploy {},
+
     #[route("/:.._route")]
     NotFound { _route: Vec<String> }
 }

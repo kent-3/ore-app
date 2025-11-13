@@ -1,13 +1,9 @@
 use dioxus::prelude::*;
 
-use crate::hooks::use_pool;
+// v1 pools - disabled for v3
+// use crate::hooks::use_pool;
 
 pub fn use_pool_url() -> Memo<Option<String>> {
-    let pool = use_pool();
-    use_memo(move || {
-        let Some(pool) = pool.cloned() else {
-            return None;
-        };
-        Some(pool.url)
-    })
+    // Pools no longer exist in v3
+    use_memo(move || None)
 }

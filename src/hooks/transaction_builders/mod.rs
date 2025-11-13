@@ -5,8 +5,9 @@ mod use_idle_withdraw_transaction;
 mod use_lp_deposit_transaction;
 mod use_pair_deposit_transaction;
 mod use_pair_withdraw_transaction;
-mod use_pool_commit_claim_transaction;
-mod use_pool_register_transaction;
+// v1 pool transactions - disabled for v3
+// mod use_pool_commit_claim_transaction;
+// mod use_pool_register_transaction;
 mod use_swap_transaction;
 mod use_token_deposit_transaction;
 mod use_token_withdraw_transaction;
@@ -21,8 +22,9 @@ pub use use_idle_withdraw_transaction::*;
 pub use use_lp_deposit_transaction::*;
 pub use use_pair_deposit_transaction::*;
 pub use use_pair_withdraw_transaction::*;
-pub use use_pool_commit_claim_transaction::*;
-pub use use_pool_register_transaction::*;
+// v1 pool transactions - disabled for v3
+// pub use use_pool_commit_claim_transaction::*;
+// pub use use_pool_register_transaction::*;
 pub use use_swap_transaction::*;
 pub use use_token_deposit_transaction::*;
 pub use use_token_withdraw_transaction::*;

@@ -1,5 +1,6 @@
 // mod blog;
 // mod callback;
+mod deploy;
 // mod download;
 mod hello;
 // mod idle;
@@ -17,6 +18,7 @@ mod not_found;
 
 // pub use blog::*;
 // pub use callback::*;
+pub use deploy::*;
 // pub use download::*;
 pub use hello::*;
 // pub use idle::*;

@@ -7,7 +7,7 @@ mod use_boost_config_wss;
 mod use_boost_tvl;
 mod use_boost_wss;
 mod use_liquidity_pair;
-mod use_member;
+// mod use_member; // v1 pools - disabled for v3
 mod use_ore_holders;
 mod use_ore_price;
 mod use_reserve_wss;
@@ -28,7 +28,7 @@ pub use use_boost_config_wss::*;
 pub use use_boost_tvl::*;
 pub use use_boost_wss::*;
 pub use use_liquidity_pair::*;
-pub use use_member::*;
+// pub use use_member::*; // v1 pools - disabled for v3
 pub use use_ore_holders::*;
 pub use use_ore_price::*;
 pub use use_reserve_wss::*;
@@ -41,15 +41,20 @@ pub use use_wss::*;
 pub use use_wss_sub::*;
 
 pub fn use_cache_provider() {
-    use_boosts_wss_provider();
-    use_boost_config_wss_provider();
+    // V1 boost/pool related - DISABLED for v3 to avoid error spam
+    // These providers look for accounts that don't exist in v3
+    // use_boosts_wss_provider();
+    // use_boost_config_wss_provider();
     // use_boost_proof_wss_provider();
-    use_reserve_balance_wss_provider();
-    use_liquidity_pairs_provider();
-    use_stakes_wss_provider();
-    use_members_provider();
-    use_boost_yield_provider();
+    // use_reserve_balance_wss_provider();
+    // use_liquidity_pairs_provider();
+    // use_stakes_wss_provider();
+    // use_members_provider();
+    // use_boost_yield_provider();
+    
+    // Keep these for basic token functionality
     use_token_balance_provider();
     use_token_balance_wss_provider();
-    use_token_price_provider();
+    // Token price provider disabled - requires USDC for quotes
+    // use_token_price_provider();
 }

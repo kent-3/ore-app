@@ -2,10 +2,9 @@ use dioxus::document::eval;
 use dioxus::prelude::*;
 use solana_sdk::pubkey::Pubkey;
 
-use crate::hooks::{use_miner_status, MinerStatus, Wallet};
+use crate::hooks::Wallet;
 
 pub fn use_wallet_provider() {
-    let mut miner_status = use_miner_status();
     let mut signal = use_context_provider(|| Signal::new(Wallet::Disconnected));
     let mut eval = eval(
         r#"
@@ -23,7 +22,7 @@ pub fn use_wallet_provider() {
                 }
                 Err(_) => {
                     signal.set(Wallet::Disconnected);
-                    miner_status.set(MinerStatus::Stopped);
+                    // v1 mining stopped, no longer needed for v3
                 }
             }
         }
