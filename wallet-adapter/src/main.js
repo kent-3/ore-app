@@ -23,7 +23,8 @@ const LABELS = {
 };
 
 export const Wallet = () => {
-  const endpoint = "http://localhost:8899";
+  // Use devnet for now - change to https://api.mainnet-beta.solana.com for mainnet
+  const endpoint = "https://api.devnet.solana.com";
   const wallets = useMemo(
     () => [
     ],

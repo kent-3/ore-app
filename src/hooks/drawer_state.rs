@@ -1,7 +1,5 @@
 use dioxus::prelude::*;
 
-use crate::components::DocsTab;
-
 // Signal for managing the visibility of the wallet drawer
 pub type IsWalletDrawerOpen = bool;
 
@@ -13,6 +11,14 @@ pub fn use_wallet_drawer_state_provider() {
 // Hook to get or set the wallet drawer state
 pub fn use_wallet_drawer_state() -> Signal<IsWalletDrawerOpen> {
     use_context::<Signal<IsWalletDrawerOpen>>()
+}
+
+// Temporary DocsTab enum (originally from components/docs)
+#[derive(Clone, Copy, PartialEq)]
+pub enum DocsTab {
+    Mining,
+    Staking,
+    Tokenomics,
 }
 
 // Signal for managing the visibility and content of the docs drawer

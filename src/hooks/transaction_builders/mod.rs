@@ -12,7 +12,7 @@ mod use_token_deposit_transaction;
 mod use_token_withdraw_transaction;
 #[cfg(feature = "web")]
 mod use_topup_transaction;
-mod use_transfer_transaction;
+// mod use_transfer_transaction;
 
 pub use use_boost_claim_all_transaction::*;
 pub use use_boost_claim_transaction::*;
@@ -28,7 +28,7 @@ pub use use_token_deposit_transaction::*;
 pub use use_token_withdraw_transaction::*;
 #[cfg(feature = "web")]
 pub use use_topup_transaction::*;
-pub use use_transfer_transaction::*;
+// pub use use_transfer_transaction::*;
 
 pub const APP_FEE: u64 = 5_000;
 pub const APP_FEE_ACCOUNT: &str = "tHCCE3KWKx8i8cDjX2DQ3Z7EMJkScAVwkfxdWz8SqgP";
