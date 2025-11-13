@@ -60,8 +60,21 @@ pub fn WalletDrawer(on_close: EventHandler<MouseEvent>, wallet_remount: Signal<b
     #[cfg(feature = "web")]
     let clipboard = WebClipboard::new();
 
-    // token balances
-    let tokens = crate::hooks::use_tokens_with_values();
+    // token balances (simplified - no pricing for now)
+    let tokens = {
+        let mut tokens_with_balance = Vec::new();
+        for (_, token) in crate::config::LISTED_TOKENS.iter() {
+            let balance = crate::hooks::use_token_balance_wss(&token.mint);
+            if let Ok(amount) = balance.cloned() {
+                if let Some(ui_amount) = amount.ui_amount {
+                    if ui_amount > 0.0 {
+                        tokens_with_balance.push((token.clone(), ui_amount));
+                    }
+                }
+            }
+        }
+        tokens_with_balance
+    };
 
     // wallet
     let wallet = use_wallet();
@@ -152,7 +165,7 @@ pub fn WalletDrawer(on_close: EventHandler<MouseEvent>, wallet_remount: Signal<b
                         gap: 2,
                         a {
                             class: "flex items-center justify-center w-12 h-12 rounded-full controls-secondary",
-                            href: "https://solscan.io/account/{pubkey.read()}",
+                            href: "https://solscan.io/account/{pubkey.read()}?cluster=devnet",
                             target: "_blank",
                             GlobeIcon { class: "h-5" }
                         }
@@ -161,23 +174,24 @@ pub fn WalletDrawer(on_close: EventHandler<MouseEvent>, wallet_remount: Signal<b
                             "Explorer"
                         }
                     }
-                    Col {
-                        class: "items-center",
-                        gap: 2,
-                        Link {
-                            class: "flex items-center justify-center w-12 h-12 rounded-full controls-secondary",
-                            onclick: move |e: MouseEvent| {
-                                e.stop_propagation();
-                                on_close.call(e);
-                            },
-                            to: Route::TransferWithToken { token_ticker: "ORE".to_string() },
-                            PaperAirplaneIcon { class: "h-5" }
-                        }
-                        span {
-                            class: "text-xs whitespace-nowrap text-elements-lowEmphasis",
-                            "Transfer"
-                        }
-                    }
+                    // Transfer feature disabled for now - no transfer page in v3 yet
+                    // Col {
+                    //     class: "items-center",
+                    //     gap: 2,
+                    //     Link {
+                    //         class: "flex items-center justify-center w-12 h-12 rounded-full controls-secondary",
+                    //         onclick: move |e: MouseEvent| {
+                    //             e.stop_propagation();
+                    //             on_close.call(e);
+                    //         },
+                    //         to: Route::Deploy {},
+                    //         PaperAirplaneIcon { class: "h-5" }
+                    //     }
+                    //     span {
+                    //         class: "text-xs whitespace-nowrap text-elements-lowEmphasis",
+                    //         "Transfer"
+                    //     }
+                    // }
                 }
             }
 
@@ -192,39 +206,23 @@ pub fn WalletDrawer(on_close: EventHandler<MouseEvent>, wallet_remount: Signal<b
                     rsx! {
                         Col {
                             class: "w-full",
-                            {tokens.iter().map(|token| {
-                                let token_clone = token.clone();
-
+                            {tokens.iter().map(|(token, balance)| {
                                 rsx! {
                                     div {
-                                        key: "{token.token.mint}",
-                                        class: "w-full justify-between items-center py-4 px-4 sm:rounded-md transition duration-300 ease-in-out hover:bg-controls-tertiary active:bg-controls-tertiaryHover hover:cursor-pointer",
-                                        onclick: move |e| {
-                                            // First close drawer (like in native version)
-                                            e.stop_propagation();
-                                            on_close.call(e.clone());
-
-                                            // Then navigate
-                                            navigator.push(Route::TransferWithToken {
-                                                token_ticker: token_clone.token.ticker.clone()
-                                            });
-                                        },
+                                        key: "{token.mint}",
+                                        class: "w-full justify-between items-center py-4 px-4 sm:rounded-md",
                                         Row {
                                             class: "w-full justify-between items-center",
                                             Row {
                                                 class: "items-center",
                                                 gap: 4,
-                                                img { class: "w-8 h-8 rounded-full shrink-0", src: "{token.token.image}" }
+                                                img { class: "w-8 h-8 rounded-full shrink-0", src: "{token.image}" }
                                                 Col {
-                                                    span { class: "font-medium text-elements-highEmphasis", "{token.token.name}" }
+                                                    span { class: "font-medium text-elements-highEmphasis", "{token.name}" }
                                                     span { class: "font-medium text-xs text-elements-lowEmphasis",
-                                                        "{token.balance:.4} {token.token.ticker}"
+                                                        "{balance:.4} {token.ticker}"
                                                     }
                                                 }
-                                            }
-                                            Col {
-                                                class: "items-end",
-                                                "${token.total_value:.2}"
                                             }
                                         }
                                     }

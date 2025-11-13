@@ -4,7 +4,10 @@ mod token_list;
 mod wallet_adapter_native;
 #[cfg(feature = "web")]
 mod wallet_adapter_web;
-mod wallet_drawer_stub;
+#[cfg(not(feature = "web"))]
+mod wallet_drawer_native;
+#[cfg(feature = "web")]
+mod wallet_drawer_web;
 #[cfg(not(feature = "web"))]
 mod wallet_picker;
 
@@ -14,6 +17,9 @@ pub use token_list::*;
 pub use wallet_adapter_native::*;
 #[cfg(feature = "web")]
 pub use wallet_adapter_web::*;
-pub use wallet_drawer_stub::WalletDrawer;
+#[cfg(not(feature = "web"))]
+pub use wallet_drawer_native::WalletDrawer;
+#[cfg(feature = "web")]
+pub use wallet_drawer_web::WalletDrawer;
 #[cfg(not(feature = "web"))]
 pub use wallet_picker::WalletPicker;
