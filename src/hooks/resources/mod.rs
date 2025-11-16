@@ -18,6 +18,11 @@ mod use_token_balance_wss;
 mod use_token_price;
 mod use_wss;
 mod use_wss_sub;
+// v3 protocol hooks
+mod use_treasury;
+mod use_v3_board;
+mod use_v3_config;
+mod use_v3_miner;
 
 pub use use_board::*;
 // pub use use_boost::*;
@@ -39,6 +44,11 @@ pub use use_token_balance_wss::*;
 pub use use_token_price::*;
 pub use use_wss::*;
 pub use use_wss_sub::*;
+// v3 protocol hooks
+pub use use_treasury::*;
+pub use use_v3_board::*;
+pub use use_v3_config::*;
+pub use use_v3_miner::*;
 
 pub fn use_cache_provider() {
     // V1 boost/pool related - DISABLED for v3 to avoid error spam

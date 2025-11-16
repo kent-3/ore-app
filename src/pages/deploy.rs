@@ -3,6 +3,7 @@ use crate::components::Header;
 
 #[component]
 pub fn Deploy() -> Element {
+    
     rsx! {
         div {
             class: "min-h-screen bg-base-bg text-elements-highEmphasis",
@@ -27,23 +28,6 @@ pub fn Deploy() -> Element {
                 div {
                     class: "max-w-3xl mx-auto",
                     
-                    // Stats Row
-                    div {
-                        class: "grid grid-cols-3 gap-4 mb-8",
-                        StatCard {
-                            label: "Round ID",
-                            value: "1234"
-                        }
-                        StatCard {
-                            label: "Your Deployed",
-                            value: "0.5 SOL"
-                        }
-                        StatCard {
-                            label: "Claimable",
-                            value: "0.0 SOL"
-                        }
-                    }
-
                     // 5x5 Mining Grid
                     div {
                         class: "bg-gray-900 rounded-lg p-6 mb-6",

@@ -30,12 +30,20 @@ pub fn Header() -> Element {
                         nav {
                             class: "hidden md:flex items-center gap-8",
                             Link {
+                                to: Route::Explore {},
+                                class: "text-elements-lowEmphasis hover:text-elements-highEmphasis transition-colors font-medium",
+                                "Explore"
+                            }
+                            Link {
                                 to: Route::Deploy {},
                                 class: "text-elements-lowEmphasis hover:text-elements-highEmphasis transition-colors font-medium",
                                 "Deploy"
                             }
-                            NavLink { label: "Stake" }
-                            NavLink { label: "About" }
+                            Link {
+                                to: Route::Stake {},
+                                class: "text-elements-lowEmphasis hover:text-elements-highEmphasis transition-colors font-medium",
+                                "Stake"
+                            }
                         }
                     }
                     

@@ -156,7 +156,7 @@ pub fn Grid() -> Element {
                             class: "bg-gray-900/50 border border-gray-700 rounded-lg p-4",
                             div {
                                 class: "flex items-center gap-2 text-xl mb-1",
-                                span { "≡" }
+                                span { "◎" }
                                 span { "{total_deployed:.4}" }
                             }
                             div {
@@ -169,7 +169,7 @@ pub fn Grid() -> Element {
                             class: "bg-gray-900/50 border border-gray-700 rounded-lg p-4",
                             div {
                                 class: "flex items-center gap-2 text-xl mb-1",
-                                span { "≡" }
+                                span { "◎" }
                                 span { "0.0000" }
                             }
                             div {
@@ -227,7 +227,7 @@ pub fn Grid() -> Element {
                             class: "flex items-center justify-between",
                             span {
                                 class: "flex items-center gap-2",
-                                span { "≡" }
+                                span { "◎" }
                                 span { "SOL" }
                             }
                             span {
